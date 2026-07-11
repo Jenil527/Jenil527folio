@@ -11,7 +11,7 @@ function Contact() {
     // IMPORTANT: Get your free access key from https://web3forms.com/
     // and replace "YOUR_ACCESS_KEY_HERE" below
     const formData = new FormData(e.target);
-    formData.append("access_key", "1c7b8870-dfc0-41fa-a575-f2b5e718d14c");
+    formData.append("access_key", "2f3880d3-8b7d-4dfb-af25-d50bbc165b44");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {

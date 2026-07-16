@@ -43,3 +43,10 @@
   color: var(--accent-secondary);
   font-size: 1.2rem;
 }
+
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

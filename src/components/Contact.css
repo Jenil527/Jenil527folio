@@ -18,6 +18,12 @@
   margin: 0 auto 2.5rem;
 }
 
+@media (max-width: 768px) {
+  .contact-content {
+    padding: 2rem 1rem;
+  }
+}
+
 .contact-submit {
   margin-bottom: 3rem;
   padding: 1rem 2rem;

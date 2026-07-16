@@ -4,36 +4,54 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #000000;
+  background-color: #050505;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
 
-.loader-video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.loading-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.loader-text {
-  position: absolute;
-  bottom: 20%;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  letter-spacing: 4px;
-  color: var(--text-secondary);
-  margin-top: 1rem;
-  animation: pulse 1s infinite alternate;
-  pointer-events: none;
+.loading-text {
+  font-family: var(--font-display, 'Inter', sans-serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  letter-spacing: clamp(5px, 2vw, 15px);
+  margin: 0;
+  color: #ffffff;
+  display: flex;
+  text-transform: uppercase;
+  text-shadow: 
+    1px 1px 0 #cccccc,
+    2px 2px 0 #cccccc,
+    3px 3px 0 #b3b3b3,
+    4px 4px 0 #b3b3b3,
+    5px 5px 0 #999999,
+    6px 6px 0 #999999,
+    7px 7px 0 #808080,
+    8px 8px 0 #808080,
+    9px 9px 0 #666666,
+    10px 10px 20px rgba(0,0,0,0.8);
 }
 
-@keyframes pulse {
-  from {
-    opacity: 0.5;
+.loading-text span {
+  opacity: 0;
+  animation: reveal-text 0.1s forwards;
+}
+
+@keyframes reveal-text {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  to {
+  100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }

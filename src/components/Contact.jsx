@@ -46,13 +46,13 @@ function Contact() {
 
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <input type="email" name="email" placeholder="Your Email" required className="form-input" />
+              <input type="text" name="email" placeholder="Your Email" className="form-input" />
             </div>
             <div className="form-group">
-              <input type="text" name="subject" placeholder="Subject" required className="form-input" />
+              <input type="text" name="subject" placeholder="Subject" className="form-input" />
             </div>
             <div className="form-group">
-              <textarea name="message" placeholder="Your Message" rows="5" required className="form-input"></textarea>
+              <textarea name="message" placeholder="Your Message" rows="5" className="form-input"></textarea>
             </div>
             <button type="submit" className="btn btn-primary contact-submit" disabled={status === "Sending..."}>
               {status === "Sending..." ? "Sending..." : "Send Message"}

@@ -12,7 +12,7 @@ function Loader({ onFinish }) {
     return () => clearTimeout(timer);
   }, [onFinish]);
 
-  const loadingText = "LOADING".split("");
+  const loadingText = "WELCOME".split("");
 
   return (
     <div className="loader-container">

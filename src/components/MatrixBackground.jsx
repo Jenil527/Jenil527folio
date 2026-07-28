@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const MatrixBackground = ({ isRaining }) => {
+const MatrixBackground = ({ isRaining, isDarkMode }) => {
   const canvasRef = useRef(null);
   const dropsRef = useRef([]);
 
@@ -34,7 +34,7 @@ const MatrixBackground = ({ isRaining }) => {
     let interval;
     
     const draw = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; 
+      ctx.fillStyle = isDarkMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'; 
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = fontSize + 'px monospace';
 
@@ -42,9 +42,9 @@ const MatrixBackground = ({ isRaining }) => {
         const text = characters[Math.floor(Math.random() * characters.length)];
         
         if (Math.random() > 0.95) {
-          ctx.fillStyle = '#ffffff'; // var(--accent-color)
+          ctx.fillStyle = isDarkMode ? '#ffffff' : '#000000'; // var(--accent-color) equivalent
         } else {
-          ctx.fillStyle = '#888888'; // var(--accent-secondary)
+          ctx.fillStyle = isDarkMode ? '#888888' : '#777777'; // var(--accent-secondary) equivalent
         }
         
         ctx.fillText(text, i * fontSize, dropsRef.current[i] * fontSize);
@@ -67,7 +67,7 @@ const MatrixBackground = ({ isRaining }) => {
       if (interval) clearInterval(interval);
       window.removeEventListener('resize', handleResize);
     };
-  }, [isRaining]);
+  }, [isRaining, isDarkMode]);
 
   return (
     <canvas

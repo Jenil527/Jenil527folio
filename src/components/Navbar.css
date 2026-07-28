@@ -10,6 +10,11 @@
   background: rgba(11, 12, 16, 0.8);
 }
 
+body.light-theme .navbar {
+  --text-primary: #ffffff;
+  --accent-color: #ffffff;
+}
+
 .nav-content {
   display: flex;
   justify-content: space-between;

@@ -10,7 +10,58 @@ import MatrixBackground from './components/MatrixBackground'
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [isRaining, setIsRaining] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    // Initial sync just in case
+    if (isDarkMode) {
+      document.body.classList.remove('light-theme');
+    } else {
+      document.body.classList.add('light-theme');
+    }
+  }, []);
+
+  const toggleTheme = (e) => {
+    const nextIsDark = !isDarkMode;
+
+    if (!document.startViewTransition) {
+      setIsDarkMode(nextIsDark);
+      if (nextIsDark) document.body.classList.remove('light-theme');
+      else document.body.classList.add('light-theme');
+      return;
+    }
+
+    const x = e.clientX;
+    const y = e.clientY;
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
+      setIsDarkMode(nextIsDark);
+      if (nextIsDark) document.body.classList.remove('light-theme');
+      else document.body.classList.add('light-theme');
+    });
+
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`
+      ];
+
+      document.documentElement.animate(
+        {
+          clipPath: clipPath,
+        },
+        {
+          duration: 700,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    });
+  };
 
   if (loading) {
     return <Loader onFinish={() => setLoading(false)} />;
@@ -18,10 +69,10 @@ function App() {
 
   return (
     <>
-      <MatrixBackground isRaining={isRaining} />
+      <MatrixBackground isRaining={true} isDarkMode={isDarkMode} />
       
       <button 
-        onClick={() => setIsRaining(!isRaining)}
+        onClick={toggleTheme}
         className="btn btn-primary"
         style={{
           position: 'fixed',
@@ -39,12 +90,12 @@ function App() {
           border: 'none',
           cursor: 'pointer'
         }}
-        aria-label={isRaining ? "Pause Rain" : "Play Rain"}
+        aria-label={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
       >
-        {isRaining ? (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+        {isDarkMode ? (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line><line x1="17.66" y1="4.22" x2="19.78" y2="6.34"></line></svg>
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         )}
       </button>
 

@@ -17,6 +17,14 @@ const projects = [
     link: '#',
     github: 'https://github.com/Jenil527',
     image: '/lib.webp'
+  },
+  {
+    title: 'Personal Portfolio Website',
+    description: 'Developed a responsive personal portfolio website to showcase my education, technical skills, projects, work experience, and professional background. Designed and organized the website to provide a clear and user-friendly way for recruiters and employers to learn about my qualifications and view my projects. The project demonstrates my ability to build, structure, and maintain a professional web presence using modern web development practices.',
+    tech: ['JavaScript', 'React', 'CSS', 'Vite'],
+    link: '#',
+    github: 'https://github.com/Jenil527/Jenil527folio',
+    image: '/PF.png'
   }
 ];
 

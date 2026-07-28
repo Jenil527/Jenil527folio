@@ -19,19 +19,26 @@ function Contact() {
         body: formData
       });
 
-      const data = await response.json();
+      let data;
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        throw new Error("Received non-JSON response from server");
+      }
 
       if (data.success) {
         setStatus("Message sent successfully!");
         e.target.reset();
         setTimeout(() => setStatus(""), 4000);
       } else {
-        setStatus("Failed to send message.");
+        setStatus(data.message || "Failed to send message.");
         setTimeout(() => setStatus(""), 4000);
       }
     } catch (error) {
-      setStatus("An error occurred. Please try again.");
-      setTimeout(() => setStatus(""), 4000);
+      console.error("Form submission error:", error);
+      setStatus(`Error: ${error.message}`);
+      setTimeout(() => setStatus(""), 6000);
     }
   };
 
@@ -52,7 +59,7 @@ function Contact() {
               <input type="text" name="subject" placeholder="Subject" className="form-input" />
             </div>
             <div className="form-group">
-              <textarea name="message" placeholder="Your Message" rows="5" className="form-input"></textarea>
+              <textarea name="message" placeholder="Your Message" rows="5" required className="form-input"></textarea>
             </div>
             <button type="submit" className="btn btn-primary contact-submit" disabled={status === "Sending..."}>
               {status === "Sending..." ? "Sending..." : "Send Message"}

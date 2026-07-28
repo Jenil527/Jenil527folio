@@ -46,7 +46,7 @@ function Contact() {
 
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <input type="text" name="email" placeholder="Your Email" className="form-input" />
+              <input type="email" name="email" placeholder="Your Email" required className="form-input" />
             </div>
             <div className="form-group">
               <input type="text" name="subject" placeholder="Subject" className="form-input" />

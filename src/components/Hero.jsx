@@ -2,7 +2,7 @@ import React from 'react';
 import './Hero.css';
 
 import InteractiveAvatar from './InteractiveAvatar';
-import resumePdf from '../assets/JenilPatel (-.).pdf';
+import resumePdf from '../assets/Jenil_Patel_Resume (-).pdf';
 
 function Hero() {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar.css';
-import resumePdf from '../assets/JenilPatel (-.).pdf';
+import resumePdf from '../assets/Jenil_Patel_Resume (-).pdf';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

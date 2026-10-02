@@ -2,6 +2,7 @@ import React from 'react';
 import './Hero.css';
 
 import InteractiveAvatar from './InteractiveAvatar';
+import resumePdf from '../assets/JenilPatel (-.).pdf';
 
 function Hero() {
   return (
@@ -16,7 +17,7 @@ function Hero() {
           </p>
           <div className="hero-cta">
             <a href="#projects" className="btn btn-primary">View My Work</a>
-            <a href="/resume.pdf" download="Jenil_Patel_Resume.pdf" className="btn btn-outline">Download Resume</a>
+            <a href={resumePdf} target="_blank" rel="noopener noreferrer" className="btn btn-outline">View Resume</a>
             <a href="#contact" className="btn btn-outline">Get In Touch</a>
           </div>
         </div>
